@@ -2,6 +2,7 @@ import { StrictMode, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
   ArrowUpRight,
+  BriefcaseBusiness,
   Instagram,
   Mail,
   Play,
@@ -17,7 +18,8 @@ const socials = [
   { label: "YouTube", href: "https://www.youtube.com/@Drazonia", icon: Youtube, className: "youtube" },
   { label: "Instagram", href: "https://www.instagram.com/drazoniaa/", icon: Instagram, className: "instagram" },
   { label: "TikTok", href: "https://www.tiktok.com/@drazonia", image: "/assets/tiktok.png", className: "tiktok" },
-  { label: "Discord", href: "https://discord.gg/5x45YRtrPX", image: "/assets/discord.svg", className: "discord" }
+  { label: "Discord", href: "https://discord.gg/5x45YRtrPX", image: "/assets/discord.svg", className: "discord" },
+  { label: "Portfolio", href: "https://portfolio-de-drazonia.vercel.app/", icon: BriefcaseBusiness, className: "portfolio" }
 ];
 
 function formatViews(views) {
