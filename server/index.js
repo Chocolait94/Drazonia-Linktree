@@ -50,6 +50,12 @@ async function getTwitchStatus() {
   };
 }
 
+function durationInSeconds(duration) {
+  const match = duration.match(/^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/);
+  if (!match) return Infinity;
+  return Number(match[1] || 0) * 3600 + Number(match[2] || 0) * 60 + Number(match[3] || 0);
+}
+
 async function getYoutubeVideos() {
   const channelId = /^UC[\w-]{22}$/.test(process.env.YOUTUBE_CHANNEL_ID || "")
     ? process.env.YOUTUBE_CHANNEL_ID
@@ -59,7 +65,8 @@ async function getYoutubeVideos() {
   const params = new URLSearchParams({
     part: "snippet",
     channelId,
-    maxResults: "6",
+    q: "#shorts",
+    maxResults: "50",
     order: "date",
     type: "video",
     key: process.env.YOUTUBE_API_KEY
@@ -88,7 +95,7 @@ async function getYoutubeVideos() {
       duration: detail?.contentDetails?.duration || ""
     };
   });
-  const shorts = videos.filter((video) => /^PT(?:[0-5]?\d)S$/.test(video.duration));
+  const shorts = videos.filter((video) => durationInSeconds(video.duration) <= 180);
   return (shorts.length ? shorts : videos).slice(0, 6);
 }
 
