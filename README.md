@@ -30,18 +30,6 @@ npm install
 npm run dev
 ```
 
-Le site est disponible sur :
-
-```text
-http://localhost:5173
-```
-
-Le serveur API écoute sur :
-
-```text
-http://localhost:3001
-```
-
 ## Build de production
 
 ```bash
