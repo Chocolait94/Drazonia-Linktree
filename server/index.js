@@ -141,4 +141,8 @@ app.get("*splat", (_request, response) => {
   response.sendFile(path.join(publicRoot, "index.html"));
 });
 
-app.listen(port, () => console.log(`Drazonia server: http://localhost:${port}`));
+if (process.env.VERCEL !== "1") {
+  app.listen(port, () => console.log(`Drazonia server: http://localhost:${port}`));
+}
+
+export default app;
