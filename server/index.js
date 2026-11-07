@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 const app = express();
 const port = process.env.PORT || 3001;
 const root = path.dirname(fileURLToPath(import.meta.url));
+const publicRoot = path.resolve(root, "..", "dist");
 const cache = { value: null, expiresAt: 0 };
 const externalRequestTimeout = 10_000;
 
@@ -135,9 +136,9 @@ app.get("/api/status", async (_request, response) => {
   }
 });
 
-app.use(express.static(path.resolve(root, "..")));
+app.use(express.static(publicRoot));
 app.get("*splat", (_request, response) => {
-  response.sendFile(path.resolve(root, "..", "index.html"));
+  response.sendFile(path.join(publicRoot, "index.html"));
 });
 
 app.listen(port, () => console.log(`Drazonia server: http://localhost:${port}`));
